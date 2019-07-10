@@ -33,7 +33,7 @@ def save_order(tableno,foods,drinks):
 		writer=csv.writer(f)
 		writer.writerow(order_data)
 
-	with open('order_kitchen.csv','a') as f:
+	with open('order_history.csv','a') as f:
 		writer=csv.writer(f)
 		writer.writerow(order_data)
 
