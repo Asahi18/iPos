@@ -1,0 +1,28 @@
+{% extends 'common.html' %}
+{%block content%}
+    <p>テーブル番号：{{tableno}}</p>
+    <ul>
+        {% for food in foods %}
+            {% if food.count %}
+                <li class="menu">{{food.name}}の個数は{{food.count}}です</li>
+            {% endif %}
+        {% endfor %}
+        {% for drink in drinks %}
+            {% if drink.count %}
+                <li class="menu">{{drink.name}}の個数は{{drink.count}}です</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <p>合計で{{sum}}円です</p>
+    <form action="/debug1" method="POST">
+        <input type="hidden" name="table" value={{tableno}}>
+        {% for food in foods %}
+            <input type="hidden" name="{{food.name}}" value={{food.count}}>
+        {% endfor %}
+        {% for food in foods %}
+            <input type="hidden" name="order_d" value={{drinks}}>
+        {% endfor %}
+        <input type="button" onclick="history.back()" value="戻る">
+        <input type="submit" value="確定">
+    </form>
+{%endblock%}

@@ -1,0 +1,39 @@
+{% extends 'common.html' %}
+{%block content%}
+    <form action="/check" method="POST">
+    <ul type="none">
+        <h4 class="mymenu">フード</h4>
+        {% for food in foods %}
+            <li>
+                <div class="choice">
+                    {{food.name}}
+                    <select name="{{food.name}}">
+                        <option value="0">選択してください</option>
+                        {% for i in range(10) %}
+                            <option value="{{i+1}}">{{i+1}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </li>
+        {% endfor %}
+        <br>
+        <h4 class="mymenu">ドリンク</h4>
+        {% for drink in drinks %}
+            <li>
+                <div class="choice">
+                    {{drink.name}}          
+                    <select name="{{drink.name}}">
+                        <option value="0">選択してください</option>
+                        {% for i in range(10) %}
+                            <option value="{{i+1}}">{{i+1}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <input type="hidden" name="table" value=tableno>
+    <input type="button" onclick="history.back()" value="戻る">
+    <input type="submit" value="注文">
+    </form>
+{%endblock%}

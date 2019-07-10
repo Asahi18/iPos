@@ -1,0 +1,6 @@
+*.pyc
+*~
+__pycache__
+myvenv
+order_history.csv
+.DS_Store

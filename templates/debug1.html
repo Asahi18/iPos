@@ -1,0 +1,13 @@
+{% extends 'common.html' %}
+{%block content%}
+    <p>デバッグ画面</p>
+    {% for food in foods %}
+        <p>{{food.name}}  {{food.count}}</p>
+    {% endfor %}
+
+    {% for drink in drinks %}
+        <p>{{drink.name}}  {{drink.count}}</p>
+    {% endfor %}
+
+    {{tableno}}
+{%endblock%}
