@@ -1,8 +1,6 @@
 from flask import Flask,render_template,request
 import csv
 from datetime import datetime
-import pandas as pd
-
 app=Flask(__name__)
 
 class Menu:
@@ -40,7 +38,7 @@ def save_order(tableno,foods,drinks):
 		kitchen_food=[tableno,]+fc
 		writer.writerow(kitchen_food)
 
-	with open('kitchen_d.csv','a') as f:
+	with open('kitchen_f.csv','a') as f:
 		writer=csv.writer(f)
 		kitchen_drink=[tableno,]+dc
 		writer.writerow(kitchen_drink)
