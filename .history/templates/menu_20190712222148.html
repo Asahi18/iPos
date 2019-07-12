@@ -23,8 +23,7 @@
         <h4 class="mymenu">ドリンク</h4>
         {% for drink in drinks %}
             <li>
-                <div class="row">
-                <div class="col-12">
+                <div class="choice">
                     {{drink.name}}          
                     <select name="{{drink.name}}">
                         <option value="0">選択してください</option>
@@ -33,14 +32,12 @@
                         {% endfor %}
                     </select>
                 </div>
-                </div>
             </li>
         {% endfor %}
-        <br>
     </ul>
     <input type="hidden" name="table" value={{tableno}}>
-    <input type="button" onclick="history.back()" value="戻る" style="padding:20px;margin:10px;">
-    <input type="submit" value="注文" style="padding:20px;margin:10px;">
+    <input type="button" onclick="history.back()" value="戻る">
+    <input type="submit" value="注文">
     </form>
 </div>
 {%endblock%}

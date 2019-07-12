@@ -1,8 +1,8 @@
 {% extends 'common.html' %}
 {%block content%}
 <div class="container-fluid">
-    <div class="row">
-    <table border="1" class="col-12">
+<div class="col-12">
+    <table border="1">
         <tr>
             {% for fn in fnt %}
                 <th align="center">{{fn}}</th>
@@ -22,12 +22,12 @@
                 </tr>
             {% endfor %}
     </table>
-    </div>
     <p>
         <form>
             <input type="button" onclick="history.back()" value="戻る">
             <input type="button" onclick="location.href='/serve_f'" value="提供">
         </form>
     </p>
+</div>
 </div>
 {%endblock%}

@@ -4,18 +4,18 @@
     <div class="row">
     <table border="1" class="col-12">
         <tr>
-            {% for fn in fnt %}
-                <th align="center">{{fn}}</th>
+            {% for dn in dnt %}
+                <th align="center">{{dn}}</th>
             {% endfor %}
         </tr>
-            {% for i in num_f %}
+            {% for i in num_d %}
                 <tr>
-                {% for data in ft[i] %}
+                {% for data in dt[i] %}
                     <td align="center">{{data}}</td>
                 {% endfor %}
                 <td align="center">
-                    <form action="/served_f" method="POST">
-                            <input type="hidden" name="servedno_f" value="{{i}}">
+                    <form action="/served_d" method="POST">
+                            <input type="hidden" name="servedno_d" value="{{i}}">
                             <input type="submit" value="提供済み">
                     </form>
                 </td>
@@ -26,8 +26,7 @@
     <p>
         <form>
             <input type="button" onclick="history.back()" value="戻る">
-            <input type="button" onclick="location.href='/serve_f'" value="提供">
+            <input type="button" onclick="location.href='/serve_d'" value="提供">
         </form>
     </p>
-</div>
 {%endblock%}

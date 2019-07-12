@@ -1,6 +1,6 @@
 {% extends 'common.html' %}
 {%block content%}
-    <h4>テーブル番号：{{tableno}}</h4>
+    <p>テーブル番号：{{tableno}}</p>
     <ul>
         {% for food in foods %}
             {% if food.count %}
@@ -13,7 +13,7 @@
             {% endif %}
         {% endfor %}
     </ul>
-    <h4>合計で{{sum}}円です</h4>
+    <p>合計で{{sum}}円です</p>
     <form action="/confirm" method="POST">
         <input type="hidden" name="table" value={{tableno}}>
         {% for food in foods %}

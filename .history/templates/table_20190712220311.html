@@ -4,14 +4,14 @@
     <h1 class="col-12">テーブルNo</h1>
     <div class="row">
     <form action="/menu" method="POST">
-        <select name="table" class="col-12">
+        <select name="table" class="col-23">
             <option value="0">選択してください</option>
             {% for i in range(10) %}
                 <option value="{{i+1}}">{{i+1}}</option>
             {% endfor %}
         </select>
-        <input type="button" onclick="history.back()" value="戻る" class="col-3" style="padding:20px;margin:10px;">
-        <input type="submit" value="注文" class="col-3" style="padding:20px;margin:10px;">
+        <input type="button" onclick="history.back()" value="戻る" class="col-3">
+        <input type="submit" value="注文" class="col-3">
     </form>
     </div>
 </div>

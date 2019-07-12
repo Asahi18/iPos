@@ -1,8 +1,7 @@
 {% extends 'common.html' %}
 {%block content%}
 <div class="container-fluid">
-    <div class="row">
-    <table border="1" class="col-12">
+    <table class="col-12" border="1">
         <tr>
             {% for fn in fnt %}
                 <th align="center">{{fn}}</th>
@@ -22,7 +21,6 @@
                 </tr>
             {% endfor %}
     </table>
-    </div>
     <p>
         <form>
             <input type="button" onclick="history.back()" value="戻る">
