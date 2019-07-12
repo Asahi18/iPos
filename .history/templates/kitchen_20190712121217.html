@@ -1,0 +1,8 @@
+{% extends 'common.html' %}
+{%block content%}
+    <form>
+        <input class="col-md-4 col-sm-6 col-xs-12" type="button" onclick="history.back()" value="戻る">
+        <input class="col-md-4 col-sm-6 col-xs-12" type="button" onclick="location.href='/kitchen_food'" value="フード">
+        <input class="col-md-4 col-sm-6 col-xs-12" type="button" onclick="location.href='/kitchen_drink'" value="ドリンク">
+    </form>
+{%endblock%}

@@ -1,0 +1,29 @@
+{% extends 'common.html' %}
+{%block content%}
+    <table class="col-md-4 col-sm-6 col-xs-12" border="1">
+        <tr>
+            {% for fn in fnt %}
+                <th align="center">{{fn}}</th>
+            {% endfor %}
+        </tr>
+            {% for i in num_f %}
+                <tr>
+                {% for data in ft[i] %}
+                    <td align="center">{{data}}</td>
+                {% endfor %}
+                <td align="center">
+                    <form action="/served_f" method="POST">
+                            <input type="hidden" name="servedno_f" value="{{i}}">
+                            <input type="submit" value="提供済み">
+                    </form>
+                </td>
+                </tr>
+            {% endfor %}
+    </table>
+    <p>
+        <form>
+            <input type="button" onclick="history.back()" value="戻る">
+            <input type="button" onclick="location.href='/serve_f'" value="提供">
+        </form>
+    </p>
+{%endblock%}
