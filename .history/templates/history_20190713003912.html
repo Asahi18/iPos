@@ -8,16 +8,15 @@
                         <th align="center">{{name}}</th>
                     {% endfor %}
                 </tr>
-                    {% for i in range(num) %}
+                    {% for i in num_d %}
                         <tr>
-                        {% for data in history[i] %}
+                        {% for data in dt[i] %}
                             <td align="center">{{data}}</td>
                         {% endfor %}
                         <td align="center">
-                            <form action="/correct" method="POST">
-                                    <input type="hidden" name="orderno" value="{{i}}">
-                                    <input type="text" name="comment">
-                                    <input type="submit" value="訂正">
+                            <form action="/served_d" method="POST">
+                                    <input type="hidden" name="servedno_d" value="{{i}}">
+                                    <input type="submit" value="提供済み">
                             </form>
                         </td>
                         </tr>
@@ -26,7 +25,8 @@
             </div>
             <p>
                 <form>
-                    <input type="button" onclick="location.href='/'" value="戻る" style="padding:20px;margin:10px;">
+                    <input type="button" onclick="location.href='/kitchen'" value="戻る">
+                    <input type="button" onclick="location.href='/serve_d'" value="提供">
                 </form>
             </p>
         </div>

@@ -54,10 +54,7 @@ def table():
 @app.route("/menu",methods=['POST'])
 def menu():
 	tableno=request.form['table']
-	if tableno=='0':
-		return error_message("テーブル番号を選択してください")
-	else:
-		return render_template("menu.html",title='menu',foods=foods,drinks=drinks,tableno=tableno)
+	return render_template("menu.html",title='menu',foods=foods,drinks=drinks,tableno=tableno)
 
 @app.route("/check",methods=['POST'])
 def check():
@@ -103,13 +100,14 @@ def kitchen_food():
 		fn.append(food.name)
 	fnt=['time','table']+fn
 	ft=[]
-	with open('kitchen_f.csv','r') as f:
-		reader=csv.reader(f)
-		for row in reader:
-			ft.append(row)
+	f=open('kitchen_f.csv','r') 
+	reader=csv.reader(f)
+	for row in reader:
+		ft.append(row)
+	f.close()
 	num_f=range(len(ft))
-	if len(ft)==0:
-		return error_message("まだ注文はありません")
+	if num_f==0:
+		error_message("まだ注文はありません")
 	else:
 		return render_template("kitchen_food.html",title='kitchen_food',fnt=fnt,ft=ft,num_f=num_f)
 
@@ -120,13 +118,14 @@ def kitchen_drink():
 		dn.append(drink.name)
 	dnt=['time','table']+dn
 	dt=[]
-	with open('kitchen_d.csv','r') as f:
-		reader=csv.reader(f)
-		for row in reader:
-			dt.append(row)
+	f=open('kitchen_d.csv','r') 
+	reader=csv.reader(f)
+	for row in reader:
+		dt.append(row)
+	f.close()
 	num_d=range(len(dt))
-	if len(dt)==0:
-		return error_message("まだ注文はありません")
+	if　num_d==0:
+		error_message("まだ注文はありません")
 	else:
 		return render_template("kitchen_drink.html",title='kitchen_drink',dnt=dnt,dt=dt,num_d=num_d)
 
@@ -162,33 +161,9 @@ def served_d():
 
 @app.route("/history")
 def history():
-	history=[]
-	with open('order_history.csv','r') as f:
-		reader=csv.reader(f)
-		for row in reader:
-			history.append(row)
-	menus=[]
-	for food in foods:
-		menus.append(food.name)
-	for drink in drinks:
-		menus.append(drink.name)
-	header=['time','table']+menus
-	num=len(history)
-	return render_template("history.html",title='history',history=history,header=header,num=num)
+	return render_template("history.html",title='history')
 
-@app.route("/correct",methods=['POST'])
-def correct():
-	comment=request.form['comment']
-	idx=request.form['orderno']
-	if comment=='':
-		return error_message('訂正内容が記入されていません')
-	else:
-		with open('corrected.csv','a') as f:
-			writer=csv.writer(f)
-			writer.writerow([idx,comment])
-		return render_template("correct.html")
-
-@app.route("/debug1")
+@app.route("/debug1")#,methods=['POST'])
 def debug1():
 	fn=[]
 	for food in foods:

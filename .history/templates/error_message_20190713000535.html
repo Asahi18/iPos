@@ -1,0 +1,10 @@
+{% extends 'common.html' %}
+{%block content%}
+    <h4>まだ注文がありません</h4>
+    <p>
+        <form>
+            <input type="button" onclick="history.back()" value="戻る">
+            <input type="button" onclick="location.href='/'" value="ホームへ">
+        </form>
+    </p>
+{%endblock%}

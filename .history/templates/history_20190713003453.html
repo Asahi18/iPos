@@ -1,0 +1,12 @@
+{% extends 'common.html' %}
+{%block content%}
+    <ul>
+        {% for order in history %}
+            <li class="menu">{{menu}}</li>
+        {% endfor %}
+    </ul>
+    <form>
+        <input type="button" onclick="history.back()" value="戻る">
+        <input type="button" onclick="location.href='/check'" value="編集">
+    </form>
+{%endblock%}

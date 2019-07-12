@@ -173,20 +173,7 @@ def history():
 	for drink in drinks:
 		menus.append(drink.name)
 	header=['time','table']+menus
-	num=len(history)
-	return render_template("history.html",title='history',history=history,header=header,num=num)
-
-@app.route("/correct",methods=['POST'])
-def correct():
-	comment=request.form['comment']
-	idx=request.form['orderno']
-	if comment=='':
-		return error_message('訂正内容が記入されていません')
-	else:
-		with open('corrected.csv','a') as f:
-			writer=csv.writer(f)
-			writer.writerow([idx,comment])
-		return render_template("correct.html")
+	return render_template("history.html",title='history',history=history,header=header)
 
 @app.route("/debug1")
 def debug1():

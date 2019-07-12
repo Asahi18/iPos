@@ -1,0 +1,10 @@
+{% extends 'common.html' %}
+{%block content%}
+    <h4>{{msg}}</h4>
+    <p>
+        <form>
+            <input type="button" onclick="history.back()" value="戻る" style="padding:20px;margin:10px;height:150px;">
+            <input type="button" onclick="location.href='/'" value="ホームへ" style="padding:20px;margin:10px;height:150px;">
+        </form>
+    </p>
+{%endblock%}

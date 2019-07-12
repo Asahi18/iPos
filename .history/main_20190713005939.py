@@ -180,13 +180,10 @@ def history():
 def correct():
 	comment=request.form['comment']
 	idx=request.form['orderno']
-	if comment=='':
-		return error_message('訂正内容が記入されていません')
-	else:
-		with open('corrected.csv','a') as f:
-			writer=csv.writer(f)
-			writer.writerow([idx,comment])
-		return render_template("correct.html")
+	with open('corrected.csv','a') as f:
+		writer=csv.writer(f)
+		writer.writerow([idx,comment])
+	return render_template("correct.html")
 
 @app.route("/debug1")
 def debug1():

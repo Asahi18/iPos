@@ -162,31 +162,7 @@ def served_d():
 
 @app.route("/history")
 def history():
-	history=[]
-	with open('order_history.csv','r') as f:
-		reader=csv.reader(f)
-		for row in reader:
-			history.append(row)
-	menus=[]
-	for food in foods:
-		menus.append(food.name)
-	for drink in drinks:
-		menus.append(drink.name)
-	header=['time','table']+menus
-	num=len(history)
-	return render_template("history.html",title='history',history=history,header=header,num=num)
-
-@app.route("/correct",methods=['POST'])
-def correct():
-	comment=request.form['comment']
-	idx=request.form['orderno']
-	if comment=='':
-		return error_message('訂正内容が記入されていません')
-	else:
-		with open('corrected.csv','a') as f:
-			writer=csv.writer(f)
-			writer.writerow([idx,comment])
-		return render_template("correct.html")
+	return render_template("history.html",title='history')
 
 @app.route("/debug1")
 def debug1():
