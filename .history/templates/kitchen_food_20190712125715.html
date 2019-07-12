@@ -1,0 +1,8 @@
+{% extends 'common.html' %}
+{%block content%}
+    <p>{{df}}</p>
+    <form>
+        <input type="button" onclick="history.back()" value="戻る">
+        <input type="button" onclick="location.href='/serve'" value="提供">
+    </form>
+{%endblock%}
