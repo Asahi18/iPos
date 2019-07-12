@@ -1,8 +1,0 @@
-*.pyc
-*~
-__pycache__
-myvenv
-order_history.csv
-kitchen_f.csv
-kitchen_d.csv
-.DS_Store
