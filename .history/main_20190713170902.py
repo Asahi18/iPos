@@ -22,8 +22,8 @@ food3=Menu("チュロス",300)
 drink1=Menu("チチャモラーダ",200)
 drink2=Menu("アグアデオルチャダ",300)
 drink3=Menu("マテ茶",200)
-foods=[food1,food2,food3]
-drinks=[drink1,drink2,drink3]
+foods=[food1,food2]
+drinks=[drink1,drink2]
 
 # p_id="cafelatina"
 # p_pwd="elsariri"

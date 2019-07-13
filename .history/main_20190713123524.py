@@ -1,14 +1,12 @@
 from flask import Flask,render_template,request,redirect
-# from flask_login import login_user,logout_user,login_required,LoginManager,UserMixin
+import flask_login
 import csv
 from datetime import datetime
 import pandas as pd
 app=Flask(__name__)
-
-# app.secret_key='deep learning corsera'
-# login_manager=LoginManager()
-# login_manager.init_app(app)
-# login_manager.login_view="users.login"
+app.secret_key='deep learning corsera'
+login_manager=flask_login.LoginManager()
+login_manager.init_app(app)
 
 class Menu:
     def __init__(self,name,price):
@@ -18,15 +16,10 @@ class Menu:
 
 food1=Menu("タコス",300)
 food2=Menu("ポンデケージョ",200)
-food3=Menu("チュロス",300)
 drink1=Menu("チチャモラーダ",200)
 drink2=Menu("アグアデオルチャダ",300)
-drink3=Menu("マテ茶",200)
-foods=[food1,food2,food3]
-drinks=[drink1,drink2,drink3]
-
-# p_id="cafelatina"
-# p_pwd="elsariri"
+foods=[food1,food2]
+drinks=[drink1,drink2]
 
 def save_order(tableno,foods,drinks):
 	fc=[]
@@ -51,121 +44,45 @@ def save_order(tableno,foods,drinks):
 		kitchen_drink=[datetime.now().strftime('%H:%M:%S'),tableno,]+dc
 		writer.writerow(kitchen_drink)
 
+class User(flask_login.UserMixin):
+	pass
+
+# users={'u_name1':'lateken','u_name2':'lateken'}の辞書
+
+@login_manager.user_loader
+def user_loader(u_name):
+	if u_name not in users:
+		return render_template("error_login.html",msg="このユーザーはアカウント登録されていません")
+	user=User()
+	user.name=u_name
+	return user
+
+@login_manager.request_loader
+def request_loader(request):
+	u_name=request.form['u_name']
+	if u_name not in users:
+		return render_template("error_login.html",msg="このユーザーはアカウント登録されていません")
+	user=User()
+	user.id=u_name
+	user.is_auth=request.form['password']==users[u_name]
+	return user
+
+@app.route("/login",methods=['POST'])
+def login():
+	u_name=request.form['u_name']
+	if request.form['password']==users[u_name]:
+		user=User()
+		user.name=u_name
+		flask_login.login_user(user)
+		return redirect('/')
+	return render_template("error_login.html",msg="ログインできませんでした")
+
 def error_message(msg):
 	return render_template("error_message.html",title='error_message',msg=msg)
 
-
-
-
-
-# users=[]
-# with open('users.csv','r') as f:
-# 	reader=csv.reader(f)
-# 	for row in reader:
-# 		users.append(row)
-
-# with open('users.csv','a') as f:
-# 	writer=csv.writer(f)
-# 	writer.writerow(new_user)
-
-
-
-# class User(UserMixin):
-# 	pass
-
-# @login_manager.user_loader
-# def user_loader(u_name):
-# 	users=[]
-# 	with open('users.csv','r') as f:
-# 		reader=csv.reader(f)
-# 		for row in reader:
-# 			users.append(row)
-# 	if u_name not in users:
-# 		return render_template("error_login.html",msg="このユーザーはアカウント登録されていません")
-# 	user=User()
-# 	user.name=u_name
-# 	return user
-
-# @login_manager.request_loader
-# def request_loader(request):
-# 	users=[]
-# 	with open('users.csv','r') as f:
-# 		reader=csv.reader(f)
-# 		for row in reader:
-# 			users.append(row)
-# 	u_name=request.form['u_name']
-# 	if u_name not in users:
-# 		return render_template("error_login.html",msg="このユーザーはアカウント登録されていません")
-# 	user=User()
-# 	user.id=u_name
-# 	user.is_authenticated=request.form['password']==p_pwd
-# 	return user
-
-# @app.route("/register")
-# def register():
-# 	return render_template("register.html")
-
-# @app.route("/register_check",methods=['POST'])
-# def register_check():
-# 	new_user=request.form['u_name']
-# 	new_id=request.form['id']
-# 	new_pwd=request.form['password']
-# 	if new_id!=p_id or new_pwd!=p_pwd:
-# 		return render_template("error_login.html",msg="不正なIDまたはpasswordです")
-# 	users=[]
-# 	with open('users.csv','r') as f:
-# 		reader=csv.reader(f)
-# 		for row in reader:
-# 			users.append(row)
-# 	if users.count(new_user)!=0:
-# 		return render_template("error_login.html",msg="既に登録されている名前です")
-# 	with open('users.csv','a') as f:
-# 		writer=csv.writer(f)
-# 		writer.writerow(new_user)
-# 	return redirect('/login')
-
-# @app.route("/login")
-# def login():
-# 	render_template("login.html")
-
-# @app.route("/login_check",methods=['POST'])
-# def login_check():
-# 	u_name=request.form['u_name']
-# 	u_id=request.form['id']
-# 	u_pwd=request.form['password']
-# 	users=[]
-# 	with open('users.csv','r') as f:
-# 		reader=csv.reader(f)
-# 		for row in reader:
-# 			users.append(row)
-# 	u_count=users.count(u_name)
-
-# 	if u_id==p_id and u_pwd==p_pwd and u_count!=0:
-# 		user=User()
-# 		user.name=u_name
-# 		login_user(user)
-# 		return redirect('/')
-# 	return render_template("error_login.html",msg="ログインできませんでした")
-
-# @app.route("/logout")
-# def logout():
-# 	logout_user()
-# 	return render_template("error_login.html",msg="ログアウトしました")
-
-# @login_manager.unauthorized_handler
-# def unauthorized_handler():
-# 	return render_template("error_login.html",msg="ログインされていません")
-
-
-
-
-@app.route("/name")
-def name():
-	return render_template("name.html",title='name')
-
 @app.route("/")
 def home():
-	return render_template("index.html",title='index',name=name)
+	return render_template("index.html",title='index')
 
 @app.route("/table")
 def table():

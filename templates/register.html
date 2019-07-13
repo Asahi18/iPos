@@ -1,0 +1,18 @@
+{% extends 'common.html' %}
+{%block content%}
+    <h3>記入者を登録します</h3>
+    <div class="container-fluid">
+    <form action="/register_check" class="col-12">
+        <p>
+            記録者:<input type="text" name="u_name">
+        </p>
+        <p>
+            ID:<input type="text" name="id">
+        </p>
+        <p>
+            Pass:<input type="text" name="password">
+        </p>
+        <input type="submit" value="注文" style="padding:20px;margin:10px;">
+    </form> 
+    </div>
+{%endblock%}

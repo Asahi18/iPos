@@ -1,14 +1,13 @@
 from flask import Flask,render_template,request,redirect
-# from flask_login import login_user,logout_user,login_required,LoginManager,UserMixin
+from flask_login import login_user,logout_user,login_required,LoginManager,UserMixin
 import csv
 from datetime import datetime
 import pandas as pd
 app=Flask(__name__)
-
-# app.secret_key='deep learning corsera'
-# login_manager=LoginManager()
-# login_manager.init_app(app)
-# login_manager.login_view="users.login"
+app.secret_key='deep learning corsera'
+login_manager=LoginManager()
+login_manager.init_app(app)
+login_manager.login_view="users.login"
 
 class Menu:
     def __init__(self,name,price):
@@ -18,15 +17,13 @@ class Menu:
 
 food1=Menu("タコス",300)
 food2=Menu("ポンデケージョ",200)
-food3=Menu("チュロス",300)
 drink1=Menu("チチャモラーダ",200)
 drink2=Menu("アグアデオルチャダ",300)
-drink3=Menu("マテ茶",200)
-foods=[food1,food2,food3]
-drinks=[drink1,drink2,drink3]
+foods=[food1,food2]
+drinks=[drink1,drink2]
 
-# p_id="cafelatina"
-# p_pwd="elsariri"
+p_id="cafelatina"
+p_pwd="elsariri"
 
 def save_order(tableno,foods,drinks):
 	fc=[]
@@ -157,11 +154,10 @@ def error_message(msg):
 # 	return render_template("error_login.html",msg="ログインされていません")
 
 
-
-
 @app.route("/name")
 def name():
 	return render_template("name.html",title='name')
+
 
 @app.route("/")
 def home():
