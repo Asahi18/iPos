@@ -1,0 +1,18 @@
+{% extends 'common.html' %}
+{%block content%}
+<div class="container-fluid">
+    <p>記録者：{{name}}</p>
+    <form action="/kitchen_food" method="POST">
+        <input type="hidden" name="name" value={{name}}>
+        <input class="col-12" type="submit" value="フード" style="padding:20px;margin:10px;height:150px;"><br>
+    </form>
+    <form action="/kitchen_drink" method="POST">
+        <input type="hidden" name="name" value={{name}}>
+        <input class="col-12" type="submit" value="ドリンク" style="padding:20px;margin:10px;height:150px;"><br>
+    </form>
+    <form action="/main" method="POST">
+        <input type="hidden" name="name" value={{name}} style="padding:20px;margin:10px;height:150px; background-color:rgb(185, 182, 180)">
+        <input type="submit" value="戻る">
+    </form>
+</div>
+{%endblock%}

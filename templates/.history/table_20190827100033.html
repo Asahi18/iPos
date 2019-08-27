@@ -1,0 +1,19 @@
+{% extends 'common.html' %}
+{%block content%}
+<div class="container-fluid">
+    <p>記録者：{{name}}</p>
+    <h1 class="col-12">テーブルNo</h1>
+    <div class="row">
+    <form action="/menu" method="POST">
+        <select name="table" class="col-12">
+            <option value="0">選択してください</option>
+            {% for i in range(10) %}
+                <option value="{{i+1}}">{{i+1}}</option>
+            {% endfor %}
+        </select>
+        <input type="button" onclick="history.back()" value="戻る" class="col-3" style="padding:20px;margin:10px;">
+        <input type="submit" value="注文" class="col-3" style="padding:20px;margin:10px;">
+    </form>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,11 @@
+{% extends 'common.html' %}
+{%block content%}
+    <h3>コメントを記録しました</h3>
+    <form >
+        <input type="button" onclick="location.href='/'" >
+    </form> 
+    <form action="/main" method="POST">
+        <input type="hidden" name="name" value={{name}}>
+        <input type="submit" value="メインメニューへ">
+    </form>
+{%endblock%}

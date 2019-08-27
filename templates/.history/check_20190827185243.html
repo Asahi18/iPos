@@ -1,0 +1,30 @@
+{% extends 'common.html' %}
+{%block content%}
+    <h4>テーブル番号：{{tableno}}</h4>
+    <p>記録者：{{name}}</p>
+    <ul>
+        {% for food in foods %}
+            {% if food.count %}
+                <li class="menu">{{food.name}}の個数は{{food.count}}です</li>
+            {% endif %}
+        {% endfor %}
+        {% for drink in drinks %}
+            {% if drink.count %}
+                <li class="menu">{{drink.name}}の個数は{{drink.count}}です</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <h4>合計で{{sum}}円です</h4>
+    <form action="/confirm" method="POST">
+        <input type="hidden" name="table" value={{tableno}}>
+        {% for food in foods %}
+            <input type="hidden" name="{{food.name}}" value={{food.count}}>
+        {% endfor %}
+        {% for drink in drinks %}
+            <input type="hidden" name="{{drink.name}}" value={{drink.count}}>
+        {% endfor %}
+        <input type="hidden" name="name" value={{name}}>
+        <input type="button" onclick="history.back()" value="戻る" style="padding:20px;margin:10px;">
+        <input type="submit" value="確定" style="padding:20px;margin:10px;">
+    </form>
+{%endblock%}

@@ -1,0 +1,16 @@
+{% extends 'common.html' %}
+{%block content%}
+    <h3>注文を提供しました</h3>
+    <p>記録者：{{name}}</p>
+    {% if key=='food' %}
+        <form action="/kitchen_food" method="POST">
+            <input type="hidden" name="name" value={{name}}>
+            <input type="submit" value="フードへ戻る">
+        </form> 
+    {% elif key=='drink' %}
+        <form action="/kitchen_drink" method="POST">
+            <input type="hidden" name="name" value={{name}}>
+            <input type="submit" value="ドリンクへ戻る">
+        </form> 
+    {% endif %}
+{%endblock%}

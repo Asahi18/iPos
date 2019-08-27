@@ -1,0 +1,8 @@
+{% extends 'common.html' %}
+{%block content%}
+    <h3>注文を確定しました</h3>
+    <form action="/confirm" method="POST">
+        <input type="hidden" name="name" value={{name}}>
+        <input type="submit" value="ホームへ戻る">
+    </form> 
+{%endblock%}

@@ -1,0 +1,36 @@
+{% extends 'common.html' %}
+{%block content%}
+    <div class="container-fluid">
+            <p>記録者：{{name}}</p>
+            <div class="row">
+            <table border="1" class="col-12">
+                <tr>
+                    {% for name in header %}
+                        <th align="center">{{name}}</th>
+                    {% endfor %}
+                    <th align="center">備考欄</th>
+                </tr>
+                    {% for i in range(num) %}
+                        <tr>
+                        {% for data in history[i] %}
+                            <td align="center">{{data}}</td>
+                        {% endfor %}
+                        <td align="center">
+                            <form action="/correct" method="POST">
+                                    <input type="hidden" name="name" value={{name}}>
+                                    <input type="hidden" name="orderno" value="{{i}}">
+                                    <input type="text" name="comment">
+                                    <input type="submit" value="記録">
+                            </form>
+                        </td>
+                        </tr>
+                    {% endfor %}
+            </table>
+            </div>
+            <p>
+                <form>
+                    <input type="button" onclick="history.back()" value="戻る">
+                </form>
+            </p>
+        </div>
+{%endblock%}

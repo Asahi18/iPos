@@ -1,0 +1,35 @@
+{% extends 'common.html' %}
+{%block content%}
+<div class="container-fluid">
+    <p>記録者：{{name}}</p>
+    <div class="row">
+    <table border="1" class="col-12">
+        <tr>
+            {% for dn in dnt %}
+                <th align="center">{{dn}}</th>
+            {% endfor %}
+        </tr>
+            {% for i in num_d %}
+                <tr>
+                {% for data in dt[i] %}
+                    <td align="center">{{data}}</td>
+                {% endfor %}
+                <td align="center">
+                    <form action="/served_d" method="POST">
+                            <input type="hidden" name="name" value={{name}}>
+                            <input type="hidden" name="servedno_d" value="{{i}}">
+                            <input type="submit" value="提供済み">
+                    </form>
+                </td>
+                </tr>
+            {% endfor %}
+    </table>
+    </div>
+    <p>
+        <form action="/kitchen" method="POST">
+            <input type="hidden" name="name" value={{name}}>
+            <input type="submit" value="戻る">
+        </form>
+    </p>
+</div>
+{%endblock%}

@@ -1,0 +1,40 @@
+{% extends 'common.html' %}
+{%block content%}
+<div class="container-fluid">
+    <div class="row">
+    <table border="1" class="col-12">
+        <tr>
+            {% for fn in fnt %}
+                <th align="center">{{fn}}</th>
+            {% endfor %}
+        </tr>
+            {% for i in num_f %}
+                <tr>
+                {% for data in ft[i] %}
+                    <td align="center">{{data}}</td>
+                {% endfor %}
+                <td align="center">
+                    <form action="/served_f" method="POST">
+                            <input type="hidden" name="name" value={{name}}>
+                            <input type="hidden" name="servedno_f" value="{{i}}">
+                            <input type="submit" value="提供済み">
+                    </form>
+                </td>
+                </tr>
+            {% endfor %}
+    </table>
+    </div>
+    <p>
+        <div style="display:inline-flex">
+            <form action="/kitchen" method="POST">
+                <input type="hidden" name="name" value={{name}}>
+                <input type="submit" value="戻る" style="padding:20px;margin:10px;">
+            </form>
+            <form action="/kitchen_food" method="POST">
+                <input type="hidden" name="name" value={{name}}>
+                <input type="submit" value="更新" class="col-3" style="padding:20px;margin:10px;">
+            </form>
+        </div>
+    </p>
+</div>
+{%endblock%}
