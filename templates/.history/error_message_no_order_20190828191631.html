@@ -1,0 +1,11 @@
+{% extends 'common.html' %}
+{%block content%}
+    <h4>{{msg}}</h4>
+    <p>
+        <form action="/kitchen" method="POST">
+            <input type="hidden" name="name" value={{name}}>
+            <input type="submit" value="戻る" style="padding:20px;margin:10px;">
+            <input type="button" onclick="location.href='/'" value="ログアウト" style="padding:20px;margin:10px;">
+        </form>
+    </p>
+{%endblock%}

@@ -148,7 +148,7 @@ def kitchen_food():
 			ft.append(row)
 	num_f=range(len(ft))
 	if len(ft)==0:
-		return render_template("error_message.html",msg="まだ注文はありません")
+		return render_template("error_message_no_order.html",msg="まだ注文はありません")
 	else:
 		return render_template("kitchen_food.html",title='kitchen_food',fnt=fnt,ft=ft,num_f=num_f,name=name)
 
@@ -166,7 +166,7 @@ def kitchen_drink():
 			dt.append(row)
 	num_d=range(len(dt))
 	if len(dt)==0:
-		return render_template("error_message.html",msg="まだ注文はありません")
+		return render_template("error_message_no_order.html",msg="まだ注文はありません")
 	else:
 		return render_template("kitchen_drink.html",title='kitchen_drink',dnt=dnt,dt=dt,num_d=num_d,name=name)
 
