@@ -1,7 +1,7 @@
 from flask import Flask,render_template,request,redirect
 # from flask_login import login_user,logout_user,login_required,LoginManager,UserMixin
 import csv
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 # import pandas as pd
 app=Flask(__name__)
 
@@ -9,6 +9,8 @@ app=Flask(__name__)
 # login_manager=LoginManager()
 # login_manager.init_app(app)
 # login_manager.login_view="users.login"
+
+JST = timezone(timedelta(hours=+9),'JST')
 
 class Menu:
     def __init__(self,name,price):
@@ -39,7 +41,7 @@ def save_order(tableno,foods,drinks,name):
 	for drink in drinks:
 		dc.append(str(drink.count))
 		sum_d+=drink.count
-	order_data=[datetime.now().strftime('%Y-%m-%d %H:%M:%S'),tableno,name]+fc+dc
+	order_data=[datetime.now(JST).strftime('%Y-%m-%d %H:%M:%S'),tableno,name]+fc+dc
 
 	with open('order_history.csv','a') as f:
 		writer=csv.writer(f)
@@ -48,13 +50,13 @@ def save_order(tableno,foods,drinks,name):
 	if sum_f>0:
 		with open('kitchen_f.csv','a') as f:
 			writer=csv.writer(f)
-			kitchen_food=[datetime.now().strftime('%H:%M:%S'),tableno,name]+fc
+			kitchen_food=[datetime.now(JST).strftime('%H:%M:%S'),tableno,name]+fc
 			writer.writerow(kitchen_food)
 
 	if sum_d>0:
 		with open('kitchen_d.csv','a') as f:
 			writer=csv.writer(f)
-			kitchen_drink=[datetime.now().strftime('%H:%M:%S'),tableno,name]+dc
+			kitchen_drink=[datetime.now(JST).strftime('%H:%M:%S'),tableno,name]+dc
 			writer.writerow(kitchen_drink)
 
 def error_message(msg):
@@ -230,7 +232,7 @@ def correct():
 	else:
 		with open('corrected.csv','a') as f:
 			writer=csv.writer(f)
-			writer.writerow([datetime.now().strftime('%Y-%m-%d %H:%M:%S'),idx,name,comment])
+			writer.writerow([datetime.now(JST).strftime('%Y-%m-%d %H:%M:%S'),idx,name,comment])
 		return render_template("correct.html",name=name)
 
 @app.route("/debug1")
