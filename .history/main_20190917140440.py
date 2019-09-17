@@ -240,7 +240,7 @@ def correct():
 @app.route("/comments",methods=['POST'])
 def comments():
 	name=request.form['name']
-	header=['time','通し番号','記録者','内容']
+	header=['time','注文番号','記録者','内容']
 	corrects=[]
 	with open('corrected.csv','r') as f:
 		reader=csv.reader(f)

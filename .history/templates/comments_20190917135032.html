@@ -1,6 +1,7 @@
 {% extends 'common.html' %}
 {%block content%}
     <div class="container-fluid">
+            <p>記録者：{{name}}</p>
             <div class="row">
             <table border="1" class="col-12">
                 <tr>
@@ -8,15 +9,17 @@
                         <th align="center">{{name}}</th>
                     {% endfor %}
                 </tr>
-                    {% for i in num %}
+                    {% for i in range(num) %}
                         <tr>
-                        {% for data in menus[i] %}
+                        {% for data in history[i] %}
                             <td align="center">{{data}}</td>
                         {% endfor %}
                         <td align="center">
-                            <form action="/served_d" method="POST">
-                                    <input type="hidden" name="comment" value="{{i}}">
-                                    <input type="submit" value="訂正申告">
+                            <form action="/correct" method="POST">
+                                    <input type="hidden" name="name" value={{name}}>
+                                    <input type="hidden" name="orderno" value="{{i+1}}">
+                                    <input type="text" name="comment">
+                                    <input type="submit" value="記録">
                             </form>
                         </td>
                         </tr>
@@ -25,8 +28,7 @@
             </div>
             <p>
                 <form>
-                    <input type="button" onclick="location.href='/kitchen'" value="戻る">
-                    <input type="button" onclick="location.href='/serve_d'" value="提供">
+                    <input type="button" onclick="history.back()" value="戻る">
                 </form>
             </p>
         </div>

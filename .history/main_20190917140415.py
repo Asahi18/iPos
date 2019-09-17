@@ -240,7 +240,7 @@ def correct():
 @app.route("/comments",methods=['POST'])
 def comments():
 	name=request.form['name']
-	header=['time','通し番号','記録者','内容']
+	header=['time','注文番号','記録者','内容']
 	corrects=[]
 	with open('corrected.csv','r') as f:
 		reader=csv.reader(f)
@@ -248,7 +248,7 @@ def comments():
 			corrects.append(row)
 	num=len(corrects)
 	if num==0:
-		return error_message('まだ備考欄が記録されていません')
+		return error_message('まだ注文が記録されていません')
 	else:
 		return render_template("comments.html",title='comments',header=header,name=name,corrects=corrects,num=num)
 
