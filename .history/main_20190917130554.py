@@ -77,8 +77,6 @@ def sign_up():
 @app.route("/main",methods=['POST'])
 def home():
 	name=request.form['name']
-	if name=='':
-		return error_message("名前を入力して下さい")
 	return render_template("index.html",title='index',name=name)
 
 @app.route("/table",methods=['POST'])
