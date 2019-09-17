@@ -289,9 +289,10 @@ def backup():
 	pwd=request.form['pwd']
 	if pwd=='Cthulhu':
 		fname=request.form['fname']
-		if fname == '':
+		if fname != '':
+			reset(fname)
+		else:
 			return error_message("ファイル名を入力してください")
-		reset(fname)
 		return render_template("cleared.html")
 	else:
 		return error_message("パスワードが正しくありません")

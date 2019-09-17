@@ -72,8 +72,8 @@ def reset(fname):
 	with open(backup_name,'w') as f:
 		writer=csv.writer(f,lineterminator='\n')
 		writer.writerows(history)
-	with open('order_history.csv','w') as f:
-		pass
+	# with open('order_history.csv','w') as f:
+	# 	pass
 
 	comment=[]
 	with open('corrected.csv','r') as f:
@@ -84,8 +84,8 @@ def reset(fname):
 	with open(backup_name,'w') as f:
 		writer=csv.writer(f,lineterminator='\n')
 		writer.writerows(comment)
-	with open('corrected.csv','w') as f:
-		pass
+	# with open('corrected.csv','w') as f:
+	# 	pass
 
 
 ##### 一番下のコード群はここにあったもので、ログイン機能の実装を試みた #####
@@ -289,10 +289,8 @@ def backup():
 	pwd=request.form['pwd']
 	if pwd=='Cthulhu':
 		fname=request.form['fname']
-		if fname == '':
-			return error_message("ファイル名を入力してください")
 		reset(fname)
-		return render_template("cleared.html")
+		return redirect('/')
 	else:
 		return error_message("パスワードが正しくありません")
 

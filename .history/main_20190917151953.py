@@ -72,8 +72,8 @@ def reset(fname):
 	with open(backup_name,'w') as f:
 		writer=csv.writer(f,lineterminator='\n')
 		writer.writerows(history)
-	with open('order_history.csv','w') as f:
-		pass
+	# with open('order_history.csv','w') as f:
+	# 	pass
 
 	comment=[]
 	with open('corrected.csv','r') as f:
@@ -84,8 +84,8 @@ def reset(fname):
 	with open(backup_name,'w') as f:
 		writer=csv.writer(f,lineterminator='\n')
 		writer.writerows(comment)
-	with open('corrected.csv','w') as f:
-		pass
+	# with open('corrected.csv','w') as f:
+	# 	pass
 
 
 ##### 一番下のコード群はここにあったもので、ログイン機能の実装を試みた #####
@@ -104,7 +104,7 @@ def home():
 	name=request.form['name']
 	if name=='':
 		return error_message("名前を入力して下さい")
-	if name=='reset':
+	if name=='reset'
 		return redirect('/reset',code=307)
 	return render_template("index.html",title='index',name=name)
 
@@ -279,22 +279,15 @@ def comments():
 	else:
 		return render_template("comments.html",title='comments',header=header,name=name,corrects=corrects,num=num)
 
-@app.route("/reset",methods=['POST'])
-def caution():
-	name=request.form['name']
-	return render_template("caution.html",title='CAUTION!',name=name)
+@app.route("/reset")
+def reset():
+	return render_template("caution.html",title='CAUTION!')
 
 @app.route("/backup",methods=['POST'])
 def backup():
-	pwd=request.form['pwd']
-	if pwd=='Cthulhu':
-		fname=request.form['fname']
-		if fname == '':
-			return error_message("ファイル名を入力してください")
-		reset(fname)
-		return render_template("cleared.html")
-	else:
-		return error_message("パスワードが正しくありません")
+	fname=request.form['fname']
+	reset(fname)
+	return render_template("comments.html",title='comments',header=header,name=name,corrects=corrects,num=num)
 
 
 # @app.route("/debug1")
@@ -306,6 +299,7 @@ def backup():
 # 	df_f=pd.read_csv('kitchen_f.csv',names=fnt)
 # 	df_f.to_html('debug1.html')
 # 	return render_template("debug1.html")
+
 
 
 

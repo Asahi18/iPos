@@ -1,0 +1,14 @@
+{% extends 'common.html' %}
+{%block content%}
+<h3>注文履歴と備考欄の消去を行います。この作業は復元できません。</h3>
+<h3>続ける場合は、バックアップ用の名前を指定して下さい</h3>
+<div class="container-fluid">
+<form action="/backup" class="col-12" method="POST">
+    <p>
+        記録者:<input type="text" name="fname">
+    </p>
+    <input type="button" onclick="history.back()" value="戻る" style="padding:20px;margin:10px;">
+    <input type="submit" value="確定" style="padding:20px;margin:10px;">
+</form> 
+</div>
+{%endblock%}
