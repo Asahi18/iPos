@@ -8,3 +8,6 @@ kitchen_d.csv
 corrected.csv
 Users.csv
 .DS_Store
+
+# /Users/kitanoasahi/Documents/WebApp/flask/iPos/ にあったファイルを持ってきたので無視する。
+(example)/
